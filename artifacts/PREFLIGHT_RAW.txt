@@ -1,0 +1,57 @@
+Ambient Mirror preflight — 2026-10-03T11:00:40-05:00
+\n$ uname -a
+Linux promaxgb10-84ff 7.0.0-1019-nvidia #19~24.04.2-Ubuntu SMP PREEMPT_DYNAMIC Sun Sep  6 18:35:11 UTC 2 aarch64 aarch64 aarch64 GNU/Linux
+\n$ git --version
+git version 2.43.0
+\n$ python3 --version
+Python 3.12.3
+\n$ node --version
+v24.21.0
+\n$ npm --version
+11.19.0
+\n$ ffmpeg -version
+./scripts/preflight.sh: line 7: ffmpeg: command not found
+\n$ claude --version
+2.1.288 (Claude Code)
+\n$ nvidia-smi
+Sat Oct  3 11:00:40 2026       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 580.178.04             Driver Version: 580.178.04     CUDA Version: 13.0     |
++-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA GB10                    On  |   0000000F:01:00.0  On |                  N/A |
+| N/A   38C    P0             11W /  N/A  | Not Supported          |      0%      Default |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|    0   N/A  N/A            3355      G   /usr/lib/xorg/Xorg                      167MiB |
+|    0   N/A  N/A            3487      G   /usr/bin/gnome-shell                    137MiB |
+|    0   N/A  N/A           30468      G   /usr/bin/nautilus                        33MiB |
+|    0   N/A  N/A           30559      G   /usr/bin/gnome-text-editor               28MiB |
+|    0   N/A  N/A           44228      G   .../8968/usr/lib/firefox/firefox        243MiB |
+|    0   N/A  N/A           80389      C   VLLM::EngineCore                      36307MiB |
+|    0   N/A  N/A           80450      G   /usr/bin/gnome-control-center            32MiB |
++-----------------------------------------------------------------------------------------+
+\n$ free -h
+               total        used        free      shared  buff/cache   available
+Mem:           121Gi        49Gi        25Gi       115Mi        47Gi        71Gi
+Swap:           15Gi       452Ki        15Gi
+\n$ df -h .
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/nvme0n1p2  3.6T  202G  3.3T   6% /
+\n$ bash -lc command -v nemoclaw || true; nemoclaw --version 2>/dev/null || true
+\n$ bash -lc command -v openshell || true; openshell --version 2>/dev/null || true
+\n$ bash -lc command -v openclaw || true; openclaw --version 2>/dev/null || true
+\nImportant files:
+OK reference/theme-reference.jpeg
+OK TASK_GRAPH.json
+OK contracts/scenario.schema.json
+\nNext: run the orchestrator and have it turn this raw output into artifacts/PREFLIGHT_REPORT.md

@@ -1,0 +1,76 @@
+{
+  "id": "urban-mirror",
+  "name": "Urban Mirror",
+  "description": "Orchestrates the Ambient Urban Mirror tools for one scenario run: inspects the visible cameras, fuses their cues deterministically, asks the reasoning model for a bounded hypothesis, and submits it or abstains. For a safety hazard job it runs the scan, the local review and a plain-words worker summary for one clip. Never perceives, computes geometry, or concludes on its own.",
+  "workspace": "/sandbox/.openclaw/workspace-urban-mirror",
+  "identity": {
+    "name": "Urban Mirror",
+    "theme": "terse evidence clerk for a multi-camera blind-spot investigation"
+  },
+  "model": {
+    "primary": "inference/nvidia/Qwen3.6-35B-A3B-NVFP4",
+    "fallbacks": []
+  },
+  "params": {
+    "temperature": 0.2
+  },
+  "thinkingDefault": "off",
+  "reasoningDefault": "off",
+  "verboseDefault": "off",
+  "contextInjection": "always",
+  "skills": [],
+  "memorySearch": {
+    "enabled": false
+  },
+  "heartbeat": {
+    "every": "0m"
+  },
+  "sandbox": {
+    "mode": "off"
+  },
+  "subagents": {
+    "allowAgents": []
+  },
+  "tools": {
+    "profile": "minimal",
+    "alsoAllow": [
+      "mirror__sample_video",
+      "mirror__inspect_camera",
+      "mirror__correlate_observations",
+      "mirror__triangulate_region",
+      "mirror__reason_hypothesis",
+      "mirror__get_supporting_frames",
+      "mirror__submit_hypothesis",
+      "mirror__hazard_scan_clip",
+      "mirror__hazard_review_clip",
+      "mirror__hazard_submit_summary"
+    ],
+    "deny": [
+      "session_status",
+      "group:messaging",
+      "group:fs",
+      "group:runtime",
+      "group:web",
+      "group:ui",
+      "group:sessions",
+      "group:memory",
+      "group:nodes",
+      "group:automation",
+      "group:media",
+      "group:agents"
+    ],
+    "loopDetection": {
+      "enabled": true,
+      "historySize": 30,
+      "warningThreshold": 3,
+      "unknownToolThreshold": 3,
+      "criticalThreshold": 5,
+      "globalCircuitBreakerThreshold": 8,
+      "detectors": {
+        "genericRepeat": true,
+        "knownPollNoProgress": true,
+        "pingPong": true
+      }
+    }
+  }
+}

@@ -1,0 +1,99 @@
+./scripts/run.sh verify-event-delta
+verified_at_utc=2026-10-03T19:57:05Z
+prebuild_commit=68060460060e09f807149ce0785402f655c56bad
+current_commit=d4dd22cd0141fb1b44f0b665904835be72812af2
+
+== current status ==
+ M artifacts/event_day/DELTA_REPORT.txt
+?? artifacts/event_day/d04/demo_check_final_run1.txt
+?? artifacts/event_day/d04/demo_check_final_run2.txt
+?? artifacts/event_day/d04/demo_check_final_run3.txt
+?? artifacts/event_day/d04/pytest_final.txt
+?? artifacts/event_day/d04/verify_event_delta.txt
+
+== event-agent relevant diff ==
+ agent/event_day/POLICY.md                          |  188 ++
+ agent/event_day/README.md                          |   22 +-
+ agent/event_day/app.py                             |  106 +
+ agent/event_day/executor.py                        |  356 +++
+ agent/event_day/hazard_runner.py                   |  241 ++
+ agent/event_day/hazard_tools.py                    |  556 +++++
+ agent/event_day/mcp_server.py                      |  563 +++++
+ agent/event_day/openclaw/agent.json                |   76 +
+ ...openclaw-2026.7.1.agents-list-entry.schema.json | 2623 ++++++++++++++++++++
+ agent/event_day/openclaw/site-lead.json            |   69 +
+ .../openclaw/workspace-site-lead/AGENTS.md         |   15 +
+ .../openclaw/workspace-site-lead/IDENTITY.md       |    3 +
+ agent/event_day/openclaw/workspace/AGENTS.md       |  152 ++
+ agent/event_day/openclaw/workspace/IDENTITY.md     |    7 +
+ agent/event_day/openclaw/workspace/SOUL.md         |   10 +
+ agent/event_day/openclaw/workspace/TOOLS.md        |   28 +
+ agent/event_day/openclaw/workspace/USER.md         |    9 +
+ agent/event_day/policy.py                          |  997 ++++++++
+ agent/event_day/register.py                        |   61 +
+ agent/event_day/registration.py                    |  417 ++++
+ agent/event_day/site_lead.py                       |  141 ++
+ agent/event_day/tests/conftest.py                  |  121 +
+ agent/event_day/tests/test_openclaw_definition.py  |  130 +
+ agent/event_day/tests/test_policy_rules.py         |  259 ++
+ agent/event_day/tests/test_policy_session.py       |  443 ++++
+ config/models/gb10.yaml                            |   43 +-
+ runtime/nemoclaw/README.md                         |   78 +-
+ runtime/nemoclaw/mirror-tools.policy.yaml          |   30 +
+ scripts/runtime/capture_status.sh                  |   92 +
+ scripts/runtime/deploy_agent.py                    |  175 ++
+ scripts/runtime/judged_run.py                      |  383 +++
+ scripts/runtime/start_api.sh                       |   47 +
+ tests/integration/agent/conftest.py                |  386 +++
+ tests/integration/agent/test_agent_run.py          |  251 ++
+ tests/integration/agent/test_hazard_agent.py       |  582 +++++
+ tests/integration/agent/test_least_privilege.py    |  257 ++
+ tests/integration/agent/test_openclaw_live.py      |  347 +++
+ tests/integration/agent/test_site_lead.py          |  144 ++
+ tests/integration/agent/test_tool_schemas.py       |  201 ++
+ tests/integration/runtime/test_runtime_wiring.py   |  212 ++
+ 40 files changed, 10797 insertions(+), 24 deletions(-)
+
+A	agent/event_day/POLICY.md
+M	agent/event_day/README.md
+A	agent/event_day/app.py
+A	agent/event_day/executor.py
+A	agent/event_day/hazard_runner.py
+A	agent/event_day/hazard_tools.py
+A	agent/event_day/mcp_server.py
+A	agent/event_day/openclaw/agent.json
+A	agent/event_day/openclaw/schema/openclaw-2026.7.1.agents-list-entry.schema.json
+A	agent/event_day/openclaw/site-lead.json
+A	agent/event_day/openclaw/workspace-site-lead/AGENTS.md
+A	agent/event_day/openclaw/workspace-site-lead/IDENTITY.md
+A	agent/event_day/openclaw/workspace/AGENTS.md
+A	agent/event_day/openclaw/workspace/IDENTITY.md
+A	agent/event_day/openclaw/workspace/SOUL.md
+A	agent/event_day/openclaw/workspace/TOOLS.md
+A	agent/event_day/openclaw/workspace/USER.md
+A	agent/event_day/policy.py
+A	agent/event_day/register.py
+A	agent/event_day/registration.py
+A	agent/event_day/site_lead.py
+A	agent/event_day/tests/conftest.py
+A	agent/event_day/tests/test_openclaw_definition.py
+A	agent/event_day/tests/test_policy_rules.py
+A	agent/event_day/tests/test_policy_session.py
+M	config/models/gb10.yaml
+M	runtime/nemoclaw/README.md
+A	runtime/nemoclaw/mirror-tools.policy.yaml
+A	scripts/runtime/capture_status.sh
+A	scripts/runtime/deploy_agent.py
+A	scripts/runtime/judged_run.py
+A	scripts/runtime/start_api.sh
+A	tests/integration/agent/conftest.py
+A	tests/integration/agent/test_agent_run.py
+A	tests/integration/agent/test_hazard_agent.py
+A	tests/integration/agent/test_least_privilege.py
+A	tests/integration/agent/test_openclaw_live.py
+A	tests/integration/agent/test_site_lead.py
+A	tests/integration/agent/test_tool_schemas.py
+A	tests/integration/runtime/test_runtime_wiring.py
+
+== imports of the judge-side eval package from agent runtime scripts/runtime ==
+none
